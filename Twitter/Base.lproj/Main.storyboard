@@ -150,6 +150,7 @@
                                                 <constraint firstItem="HSJ-Jw-l8R" firstAttribute="leading" secondItem="XB6-8Y-PtH" secondAttribute="trailing" constant="10" id="5Ya-HX-fuV"/>
                                                 <constraint firstItem="HSJ-Jw-l8R" firstAttribute="top" secondItem="XB6-8Y-PtH" secondAttribute="top" id="98C-nX-DvM"/>
                                                 <constraint firstItem="Dbu-c7-dHa" firstAttribute="top" secondItem="lgX-rH-oR6" secondAttribute="bottom" constant="10" id="BF2-Us-jcb"/>
+                                                <constraint firstItem="fxP-Ea-xK7" firstAttribute="leading" secondItem="GeI-gs-OHL" secondAttribute="trailing" constant="68" id="CJ5-g0-QW8"/>
                                                 <constraint firstItem="lgX-rH-oR6" firstAttribute="leading" secondItem="XB6-8Y-PtH" secondAttribute="trailing" constant="10" id="Cno-1K-vM0"/>
                                                 <constraint firstItem="lgX-rH-oR6" firstAttribute="top" secondItem="HSJ-Jw-l8R" secondAttribute="bottom" id="GDI-xX-qhC"/>
                                                 <constraint firstAttribute="trailing" secondItem="lgX-rH-oR6" secondAttribute="trailing" constant="10" id="HOp-8Y-ipS"/>
@@ -180,6 +181,7 @@
                                                     <exclude reference="OoB-8R-Td0"/>
                                                     <exclude reference="sjA-hZ-vqW"/>
                                                     <exclude reference="sRL-Xi-ERZ"/>
+                                                    <exclude reference="XNb-KI-5ji"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
