@@ -9,12 +9,18 @@
 import UIKit
 
 class User: NSObject {
+  static let currentUserStorageKey = "currentUserData"
+  static let userDidLogoutNotification = "UserDidLogout"
+
   var name: NSString?
   var screenName: NSString?
   var profileUrl: NSURL?
   var tagline: NSString?
+  var dictionary: NSDictionary?
 
   init(dictionary: NSDictionary) {
+    self.dictionary = dictionary
+
     name = dictionary["name"] as? NSString
     screenName = dictionary["screen_name"] as? NSString
     let profileURLString = dictionary["profile_image_url_https"] as? String
@@ -22,5 +28,35 @@ class User: NSObject {
       profileUrl = NSURL(string:profileURLString)
     }
     tagline = dictionary["description"] as? NSString
+  }
+
+
+  static var _currentUser: User?
+
+  class var currentUser: User? {
+    get {
+      if _currentUser == nil {
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let userData = userDefaults.objectForKey(User.currentUserStorageKey) as? NSData
+
+        if let userData = userData {
+          let dictionary = try! NSJSONSerialization.JSONObjectWithData(userData, options: []) as! NSDictionary
+          _currentUser = User(dictionary: dictionary)
+        }
+      }
+      return _currentUser
+    }
+    set(user) {
+      let userDefaults = NSUserDefaults.standardUserDefaults()
+      if let user = user {
+        let data = try! NSJSONSerialization.dataWithJSONObject(user.dictionary!, options: [])
+        userDefaults.setObject(data, forKey: User.currentUserStorageKey)
+      } else {
+        userDefaults.setObject(nil, forKey: User.currentUserStorageKey)
+      }
+
+      userDefaults.synchronize()
+    }
   }
 }
