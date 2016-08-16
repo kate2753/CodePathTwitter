@@ -14,6 +14,8 @@ class TweetCell: UITableViewCell {
   @IBOutlet weak var userNameLabel: UILabel!
   @IBOutlet weak var userHandleLabel: UILabel!
   @IBOutlet weak var tweetTimestampLabel: UILabel!
+  @IBOutlet weak var retweetCounLabel: UILabel!
+  @IBOutlet weak var likeCountLabel: UILabel!
 
   var tweet: Tweet? {
     didSet {
@@ -28,6 +30,13 @@ class TweetCell: UITableViewCell {
           self.userProfilePicture.setImageWithURL(profilePictureUrl)
         }
         self.userProfilePicture.layer.cornerRadius = 3
+        if tweet.retweetCount > 0 {
+          self.retweetCounLabel.text = "\(tweet.retweetCount)"
+        }
+
+        if tweet.favoritesCount > 0 {
+          self.likeCountLabel.text = "\(tweet.favoritesCount)"
+        }
       }
     }
   }
