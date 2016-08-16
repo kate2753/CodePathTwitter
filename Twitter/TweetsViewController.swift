@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AFNetworking
 
 class TweetsViewController: UIViewController {
 
@@ -24,12 +25,16 @@ class TweetsViewController: UIViewController {
 
     tableView.delegate = self
     tableView.dataSource = self
+    tableView.estimatedRowHeight = 200
+    tableView.rowHeight = UITableViewAutomaticDimension
 
     TwitterClient.sharedInstance.homeTimeline({ (tweets: [Tweet]) -> () in
       self.tweets = tweets
     }) { (error: NSError) in
       print(error.localizedDescription)
     }
+
+    
   }
 
   override func didReceiveMemoryWarning() {

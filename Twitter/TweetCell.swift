@@ -9,14 +9,29 @@
 import UIKit
 
 class TweetCell: UITableViewCell {
+  @IBOutlet weak var tweetTextLabel: UILabel!
+  @IBOutlet weak var userProfilePicture: UIImageView!
+  @IBOutlet weak var userNameLabel: UILabel!
+  @IBOutlet weak var userHandleLabel: UILabel!
+  @IBOutlet weak var tweetTimestampLabel: UILabel!
 
   var tweet: Tweet? {
     didSet {
-      self.tweetTextLabel.text = tweet?.text
+      if let tweet = tweet {
+        self.tweetTextLabel.text = tweet.text
+        self.tweetTimestampLabel.text = tweet.formattedTimestamp
+        self.userNameLabel.text = tweet.user.name
+        if let screenName = tweet.user.screenName {
+          self.userHandleLabel.text = "@\(screenName)"
+        }
+        if let profilePictureUrl = tweet.user.profileUrl {
+          self.userProfilePicture.setImageWithURL(profilePictureUrl)
+        }
+        self.userProfilePicture.layer.cornerRadius = 3
+      }
     }
   }
 
-  @IBOutlet weak var tweetTextLabel: UILabel!
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
@@ -27,5 +42,5 @@ class TweetCell: UITableViewCell {
 
     // Configure the view for the selected state
   }
-
+  
 }

@@ -12,22 +12,22 @@ class User: NSObject {
   static let currentUserStorageKey = "currentUserData"
   static let userDidLogoutNotification = "UserDidLogout"
 
-  var name: NSString?
-  var screenName: NSString?
+  var name: String?
+  var screenName: String?
   var profileUrl: NSURL?
-  var tagline: NSString?
+  var tagline: String?
   var dictionary: NSDictionary?
 
   init(dictionary: NSDictionary) {
     self.dictionary = dictionary
 
-    name = dictionary["name"] as? NSString
-    screenName = dictionary["screen_name"] as? NSString
+    name = dictionary["name"] as? String
+    screenName = dictionary["screen_name"] as? String
     let profileURLString = dictionary["profile_image_url_https"] as? String
     if let profileURLString = profileURLString {
       profileUrl = NSURL(string:profileURLString)
     }
-    tagline = dictionary["description"] as? NSString
+    tagline = dictionary["description"] as? String
   }
 
 
