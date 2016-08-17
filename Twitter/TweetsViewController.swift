@@ -12,6 +12,7 @@ import AFNetworking
 class TweetsViewController: UIViewController {
 
 
+  @IBOutlet weak var composeTweetButton: UIImageView!
   @IBOutlet weak var tableView: UITableView!
 
   var tweets: [Tweet]? {
@@ -22,6 +23,10 @@ class TweetsViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    composeTweetButton.userInteractionEnabled = true
+    let composeTweetTap = UITapGestureRecognizer(target: self, action: #selector(TweetsViewController.composeTweetTapped))
+    composeTweetButton.addGestureRecognizer(composeTweetTap)
 
     tableView.delegate = self
     tableView.dataSource = self
@@ -54,7 +59,6 @@ class TweetsViewController: UIViewController {
    }
    */
 
-
   func updateTweets(refreshControl: UIRefreshControl) {
     TwitterClient.sharedInstance.homeTimeline({ (tweets: [Tweet]) -> () in
       self.tweets = tweets
@@ -63,6 +67,12 @@ class TweetsViewController: UIViewController {
       self.tweets = nil
       refreshControl.endRefreshing()
     }
+  }
+
+  func composeTweetTapped(gestureRecognizer: UITapGestureRecognizer) {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let composeTweetVC = storyboard.instantiateViewControllerWithIdentifier("ComposeTweetNavigationController")
+    presentViewController(composeTweetVC, animated: true, completion: nil)
   }
 }
 
