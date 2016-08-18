@@ -69,10 +69,22 @@ class TweetsViewController: UIViewController {
     }
   }
 
+  // MARK: - Gesture recognizer handlers
+
   func composeTweetTapped(gestureRecognizer: UITapGestureRecognizer) {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let composeTweetVC = storyboard.instantiateViewControllerWithIdentifier("ComposeTweetNavigationController")
     presentViewController(composeTweetVC, animated: true, completion: nil)
+  }
+
+  func tweetTapped(gestureRecognizer: UITapGestureRecognizer) {
+    if let tweetCell = gestureRecognizer.view as? TweetCell {
+      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+      let tweetViewController = storyboard.instantiateViewControllerWithIdentifier("TweetViewController") as! TweetViewController
+      tweetViewController.tweet = tweetCell.tweet
+//      tweetViewController.automaticallyAdjustsScrollViewInsets = true
+      navigationController?.pushViewController(tweetViewController, animated: true)
+    }
   }
 }
 
@@ -84,8 +96,10 @@ extension TweetsViewController: UITableViewDelegate, UITableViewDataSource {
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell") as! TweetCell
+    let tweetTap = UITapGestureRecognizer(target: self, action: #selector(TweetsViewController.tweetTapped))
+    cell.addGestureRecognizer(tweetTap)
     cell.tweet = tweets?[indexPath.row]
     return cell
-
+    
   }
 }

@@ -11,7 +11,18 @@ import UIKit
 class Tweet: NSObject {
   var text: String?
   var timestamp: NSDate?
-  var formattedTimestamp: String? {
+  var formattedTime: String? {
+    get {
+      if let timestamp = timestamp {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = NSDateFormatterStyle.LongStyle
+        formatter.timeStyle = .MediumStyle
+        return formatter.stringFromDate(timestamp)
+      }
+      return nil
+    }
+  }
+  var formattedRelativeTime: String? {
     get {
       if let timestamp = timestamp {
         let formatter = NSDateComponentsFormatter()

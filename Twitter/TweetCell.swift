@@ -21,7 +21,7 @@ class TweetCell: UITableViewCell {
     didSet {
       if let tweet = tweet {
         self.tweetTextLabel.text = tweet.text
-        self.tweetTimestampLabel.text = tweet.formattedTimestamp
+        self.tweetTimestampLabel.text = tweet.formattedRelativeTime
         self.userNameLabel.text = tweet.user.name
         if let screenName = tweet.user.screenName {
           self.userHandleLabel.text = "@\(screenName)"
