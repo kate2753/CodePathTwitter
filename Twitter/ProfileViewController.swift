@@ -10,12 +10,20 @@ import UIKit
 
 class ProfileViewController: UIViewController {
   @IBOutlet weak var userHeaderView: UserHeaderView!
+  @IBOutlet weak var tweetsCountLabel: UILabel!
+  @IBOutlet weak var followingCountLabel: UILabel!
+  @IBOutlet weak var followersCountLabel: UILabel!
 
   var user: User?
 
   override func viewDidLoad() {
     super.viewDidLoad()
     userHeaderView.user = user
+    if let currentUser = user {
+      tweetsCountLabel.text = "\(currentUser.statusesCount)"
+      followingCountLabel.text = "\(currentUser.followingCount)"
+      followersCountLabel.text = "\(currentUser.followersCount)"
+    }
   }
 
   override func didReceiveMemoryWarning() {

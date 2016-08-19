@@ -19,6 +19,7 @@ class UserHeaderView: UIView {
 
   var user: User? {
     didSet {
+      print("user header user set \(user)")
       if let user = user {
         userNameLabel.text = user.name
         userHandleLabel.text = "@\(user.screenName!)"

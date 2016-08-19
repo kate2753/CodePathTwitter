@@ -17,11 +17,15 @@ class User: NSObject {
   var profilePhotoUrl: NSURL?
   var profileBannerUrl : NSURL?
   var tagline: String?
+  var statusesCount: Int = 0
+  var followersCount: Int = 0
+  var followingCount: Int = 0
+
   var dictionary: NSDictionary?
 
   init(dictionary: NSDictionary) {
     self.dictionary = dictionary
-
+//    print(dictionary)
     name = dictionary["name"] as? String
     screenName = dictionary["screen_name"] as? String
     let profileURLString = dictionary["profile_image_url_https"] as? String
@@ -30,6 +34,15 @@ class User: NSObject {
     }
     if let profileBannerUrl = dictionary["profile_banner_url"] as? String {
       self.profileBannerUrl = NSURL(string: profileBannerUrl)
+    }
+    if let statusesCount = dictionary["statuses_count"] as? Int {
+      self.statusesCount = statusesCount
+    }
+    if let followersCount = dictionary["followers_count"] as? Int {
+      self.followersCount = followersCount
+    }
+    if let followingCount = dictionary["friends_count"] as? Int {
+      self.followingCount = followingCount
     }
     tagline = dictionary["description"] as? String
   }
