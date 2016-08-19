@@ -72,12 +72,7 @@ class TweetsViewController: UIViewController {
   // MARK: - Gesture recognizer handlers
 
   func composeTweetTapped(gestureRecognizer: UITapGestureRecognizer) {
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    let composeTweetNavigationController = storyboard.instantiateViewControllerWithIdentifier("ComposeTweetNavigationController") as! UINavigationController
-    if let compostTweetVc = composeTweetNavigationController.topViewController as? ComposeTweetViewController {
-      compostTweetVc.delegate = self
-    }
-    presentViewController(composeTweetNavigationController, animated: true, completion: nil)
+    composeTweet(nil)
   }
 
   func tweetTapped(gestureRecognizer: UITapGestureRecognizer) {
@@ -87,6 +82,16 @@ class TweetsViewController: UIViewController {
       tweetViewController.tweet = tweetCell.tweet
       navigationController?.pushViewController(tweetViewController, animated: true)
     }
+  }
+
+  func composeTweet(repyToTweet: Tweet?) {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let composeTweetNavigationController = storyboard.instantiateViewControllerWithIdentifier("ComposeTweetNavigationController") as! UINavigationController
+    if let composeTweetVc = composeTweetNavigationController.topViewController as? ComposeTweetViewController {
+      composeTweetVc.delegate = self
+      composeTweetVc.replyToTweet = repyToTweet
+    }
+    presentViewController(composeTweetNavigationController, animated: true, completion: nil)
   }
 }
 
@@ -101,6 +106,7 @@ extension TweetsViewController: UITableViewDelegate, UITableViewDataSource {
     let tweetTap = UITapGestureRecognizer(target: self, action: #selector(TweetsViewController.tweetTapped))
     cell.addGestureRecognizer(tweetTap)
     cell.tweet = tweets?[indexPath.row]
+    cell.delegate = self
     return cell
   }
 }
@@ -109,5 +115,11 @@ extension TweetsViewController: ComposeTweetViewControllerDelegate {
   func composeTweetViewController(composeTweetViewController: ComposeTweetViewController, didPostTweet tweet: Tweet) {
     tweets?.insert(tweet, atIndex: 0)
     tableView.reloadData()
+  }
+}
+
+extension TweetsViewController: TweetCellDelegate {
+  func tweetCell(tweetCell: TweetCell, didTapReply replyToTweet: Tweet) {
+    composeTweet(replyToTweet)
   }
 }

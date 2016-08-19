@@ -31,12 +31,8 @@ class TweetViewController: UIViewController {
       userHandle.text = "@\(tweet.user.screenName!)"
       tweetText.text = tweet.text
       tweetTime.text = tweet.formattedTime
-      if tweet.retweetCount > 0 {
-        retweetsLabel.text = "\(tweet.retweetCount)"
-      }
-      if tweet.favoritesCount > 0 {
-        favoritesLabel.text = "\(tweet.favoritesCount)"
-      }
+      retweetsLabel.text = "\(tweet.retweetCount ?? 0)"
+      favoritesLabel.text = "\(tweet.favoritesCount ?? 0)"
     }
   }
 

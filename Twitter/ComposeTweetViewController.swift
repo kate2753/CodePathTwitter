@@ -20,6 +20,7 @@ class ComposeTweetViewController: UIViewController {
   @IBOutlet weak var tweetButton: UIBarButtonItem!
 
   weak var delegate: ComposeTweetViewControllerDelegate?
+  var replyToTweet: Tweet?
 
   let maxTweetCharacters = 140
 
@@ -32,6 +33,9 @@ class ComposeTweetViewController: UIViewController {
     }
     tweetText.becomeFirstResponder()
     tweetText.delegate = self
+    if let tweet = replyToTweet {
+      tweetText?.text = "@\(tweet.user.screenName!) "
+    }
     handleTweetTextChanged()
   }
 
@@ -63,13 +67,20 @@ class ComposeTweetViewController: UIViewController {
     tweetButton.enabled = numCharacters > 0 &&  remainingCharacters >= 0
   }
 
+  func onTweetPosted(tweet: Tweet) {
+    self.delegate?.composeTweetViewController(self, didPostTweet: tweet)
+    self.dismissViewControllerAnimated(true, completion: nil)
+  }
+
+  func onFailedToPostTweet(error: NSError) {
+    print("Failed to post tweet \(error.localizedDescription)")
+  }
+
   @IBAction func onTweetButton(sender: AnyObject) {
-    let statusText = tweetText.text
-    TwitterClient.sharedInstance.updateStatus(statusText, success: { (tweet: Tweet) in
-      self.delegate?.composeTweetViewController(self, didPostTweet: tweet)
-      self.dismissViewControllerAnimated(true, completion: nil)
-    }) { (error: NSError) in
-      print("Failed to post tweet \(error.localizedDescription)")
+    if replyToTweet != nil {
+      TwitterClient.sharedInstance.replyToTweet(tweetText.text, replyToTweet: self.replyToTweet!, success: self.onTweetPosted, failure: self.onFailedToPostTweet)
+    } else {
+      TwitterClient.sharedInstance.tweet(tweetText.text, success: self.onTweetPosted, failure: self.onFailedToPostTweet)
     }
   }
 }

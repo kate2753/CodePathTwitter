@@ -42,9 +42,20 @@ class TwitterClient: BDBOAuth1SessionManager {
     })
   }
 
-  func updateStatus(tweetText: String, success: (Tweet) -> (), failure: (NSError) -> ()) {
-    let params = NSDictionary(dictionary: ["status" : tweetText])
+  func replyToTweet(text: String, replyToTweet: Tweet, success: (Tweet) -> (), failure: (NSError) -> ()) {
+    let params = NSDictionary(dictionary: [
+      "status" : text,
+      "in_reply_to_status_id": replyToTweet.id,
+    ])
+    updateStatus(params, success: success, failure: failure)
+  }
 
+  func tweet(text: String, success: (Tweet) -> (), failure: (NSError) -> ()) {
+    let params = NSDictionary(dictionary: ["status" : text])
+    updateStatus(params, success: success, failure: failure)
+  }
+
+  func updateStatus(params: NSDictionary, success: (Tweet) -> (), failure: (NSError) -> ()) {
     POST("1.1/statuses/update.json",
          parameters: params,
          progress: nil,

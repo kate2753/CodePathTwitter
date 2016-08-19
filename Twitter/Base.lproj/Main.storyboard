@@ -181,6 +181,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="replyToTweetButton" destination="Dbu-c7-dHa" id="qMe-bj-pEe"/>
                                             <outlet property="retweetCounLabel" destination="GRi-q2-5vt" id="jdS-hB-iup"/>
                                             <outlet property="tweetTextLabel" destination="lgX-rH-oR6" id="pL2-s5-3FU"/>
                                             <outlet property="tweetTimestampLabel" destination="nP7-oZ-FLs" id="rWO-JJ-hcF"/>
