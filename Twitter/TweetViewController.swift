@@ -24,7 +24,7 @@ class TweetViewController: UIViewController {
     super.viewDidLoad()
 
     if let tweet = tweet {
-      profilePhotoImageView.setImageWithURL(tweet.user.profileUrl!)
+      profilePhotoImageView.setImageWithURL(tweet.user.profilePhotoUrl!)
       profilePhotoImageView.layer.cornerRadius = 3
 
       userName.text = tweet.user.name

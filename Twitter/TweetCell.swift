@@ -10,6 +10,7 @@ import UIKit
 
 @objc protocol TweetCellDelegate {
   func tweetCell(tweetCell: TweetCell, didTapReply: Tweet)
+  func tweetCell(tweetCell: TweetCell, didTapUserProfilePhoto: User)
 }
 
 class TweetCell: UITableViewCell {
@@ -36,7 +37,7 @@ class TweetCell: UITableViewCell {
         if let screenName = tweet.user.screenName {
           self.userHandleLabel.text = "@\(screenName)"
         }
-        if let profilePictureUrl = tweet.user.profileUrl {
+        if let profilePictureUrl = tweet.user.profilePhotoUrl {
           self.userProfilePicture.setImageWithURL(profilePictureUrl)
         }
         self.userProfilePicture.layer.cornerRadius = 3
@@ -62,9 +63,13 @@ class TweetCell: UITableViewCell {
     super.awakeFromNib()
     // Initialization code
 
+    userProfilePicture.userInteractionEnabled = true
     replyToTweetButton.userInteractionEnabled = true
     retweetButton.userInteractionEnabled = true
     likeButton.userInteractionEnabled = true
+
+    let userProfilePhotoTap = UITapGestureRecognizer(target: self, action: #selector(TweetCell.userProfilePhotoTapped))
+    userProfilePicture.addGestureRecognizer(userProfilePhotoTap)
 
     let replyTapGesture = UITapGestureRecognizer(target: self, action: #selector(TweetCell.replyToTweetTapped))
     replyToTweetButton.addGestureRecognizer(replyTapGesture)
@@ -78,5 +83,9 @@ class TweetCell: UITableViewCell {
 
   func replyToTweetTapped(tapGesture: UITapGestureRecognizer) {
     delegate?.tweetCell(self, didTapReply: self.tweet!)
+  }
+
+  func userProfilePhotoTapped(tapGesture: UITapGestureRecognizer) {
+    delegate?.tweetCell(self, didTapUserProfilePhoto: self.tweet!.user)
   }
 }

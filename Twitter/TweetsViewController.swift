@@ -122,4 +122,12 @@ extension TweetsViewController: TweetCellDelegate {
   func tweetCell(tweetCell: TweetCell, didTapReply replyToTweet: Tweet) {
     composeTweet(replyToTweet)
   }
+
+  func tweetCell(tweetCell: TweetCell, didTapUserProfilePhoto user: User) {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let userProfileViewController = storyboard.instantiateViewControllerWithIdentifier("UserProfileViewController") as! ProfileViewController
+    userProfileViewController.user = user
+    userProfileViewController.edgesForExtendedLayout = .None
+    navigationController?.pushViewController(userProfileViewController, animated: true)
+  }
 }

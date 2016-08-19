@@ -110,14 +110,14 @@
                                                         <constraint firstAttribute="width" constant="20" id="twe-Mn-Jl8"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet-action" highlightedImage="retweet-action-highlighted" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GeI-gs-OHL">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet-action" highlightedImage="retweet-action-highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="GeI-gs-OHL">
                                                     <rect key="frame" x="140" y="74" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="8Q2-rz-a33"/>
                                                         <constraint firstAttribute="height" constant="20" id="y5h-AV-Ssi"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like-action" highlightedImage="like-action-highlighted" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fxP-Ea-xK7">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like-action" highlightedImage="like-action-highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="fxP-Ea-xK7">
                                                     <rect key="frame" x="228" y="74" width="17" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="BwA-Pf-2bb"/>
@@ -355,7 +355,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pbY-EV-iRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2379.5" y="656.5"/>
+            <point key="canvasLocation" x="2369.5" y="253.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ICq-kH-4gQ">
@@ -376,6 +376,25 @@
             </objects>
             <point key="canvasLocation" x="936" y="657"/>
         </scene>
+        <!--Hamburger Menu View Controller-->
+        <scene sceneID="aT0-Fp-mzx">
+            <objects>
+                <viewController storyboardIdentifier="HamburderMenuViewController" id="2pP-5F-D4N" customClass="HamburgerMenuViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pd2-Ce-52E"/>
+                        <viewControllerLayoutGuide type="bottom" id="L8I-FR-2FD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xh8-fJ-UrQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vl4-NI-SRV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="457.5" y="1460.5"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="IRj-en-z6X">
             <objects>
@@ -393,7 +412,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hhz-9D-hby" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1933.5" y="656.5"/>
+            <point key="canvasLocation" x="1875.5" y="253.5"/>
         </scene>
         <!--Tweet View Controller-->
         <scene sceneID="Gax-yZ-rPg">
@@ -566,7 +585,43 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eAQ-la-pld" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1408.5" y="1398.5"/>
+            <point key="canvasLocation" x="1875.5" y="1012.5"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="BuF-sZ-iBn">
+            <objects>
+                <viewController storyboardIdentifier="UserProfileViewController" id="X43-CV-LsY" customClass="ProfileViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6d0-xF-ALH"/>
+                        <viewControllerLayoutGuide type="bottom" id="y9Z-aK-kiN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bgd-6K-9H5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B98-dy-zC2" customClass="UserHeaderView" customModule="Twitter" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="H56-U4-AHn"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="B98-dy-zC2" secondAttribute="trailing" id="8uq-QK-3xJ"/>
+                            <constraint firstItem="B98-dy-zC2" firstAttribute="leading" secondItem="bgd-6K-9H5" secondAttribute="leading" id="A0P-jx-zZl"/>
+                            <constraint firstItem="B98-dy-zC2" firstAttribute="top" secondItem="bgd-6K-9H5" secondAttribute="top" id="cgK-ya-MjT"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="userHeaderView" destination="B98-dy-zC2" id="05p-aO-wCk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0tg-X3-54y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1875.5" y="1758.5"/>
         </scene>
     </scenes>
     <resources>

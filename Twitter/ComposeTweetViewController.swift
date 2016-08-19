@@ -28,7 +28,7 @@ class ComposeTweetViewController: UIViewController {
     super.viewDidLoad()
     self.automaticallyAdjustsScrollViewInsets = false
 
-    if let profilePhotoURL = User.currentUser?.profileUrl {
+    if let profilePhotoURL = User.currentUser?.profilePhotoUrl {
       currentUserProfilePhoto.setImageWithURL(profilePhotoURL)
     }
     tweetText.becomeFirstResponder()

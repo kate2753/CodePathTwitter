@@ -45,7 +45,7 @@ class Tweet: NSObject {
   var retweetStatus: Tweet?
 
   init(dictionary: NSDictionary) {
-    print(dictionary)
+//    print(dictionary)
     id = dictionary["id_str"] as! String
     text = dictionary["text"] as! String
     retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
