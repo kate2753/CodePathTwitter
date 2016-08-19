@@ -43,7 +43,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <segue destination="gum-tj-zZj" kind="presentation" identifier="LoginSegue" id="dHU-IJ-wFq"/>
+                        <segue destination="2pP-5F-D4N" kind="presentation" identifier="LoginSegue" id="ukx-a1-cee"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -269,7 +269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bTg-ZG-4nY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1408.5" y="656.5"/>
+            <point key="canvasLocation" x="1563.5" y="1193.5"/>
         </scene>
         <!--Compose Tweet View Controller-->
         <scene sceneID="f53-bt-2GU">
@@ -356,7 +356,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pbY-EV-iRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2369.5" y="253.5"/>
+            <point key="canvasLocation" x="2513.5" y="429.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ICq-kH-4gQ">
@@ -375,7 +375,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="al5-jf-JWT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936" y="657"/>
+            <point key="canvasLocation" x="1078.5" y="1193.5"/>
         </scene>
         <!--Hamburger Menu View Controller-->
         <scene sceneID="aT0-Fp-mzx">
@@ -388,11 +388,51 @@
                     <view key="view" contentMode="scaleToFill" id="xh8-fJ-UrQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Lu-2V-DJA" userLabel="MenuView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZYx-1e-Ya3" userLabel="ContentView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="PdQ-44-xep" appends="YES" id="bBX-UL-Gtw"/>
+                                </connections>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2Lu-2V-DJA" firstAttribute="leading" secondItem="xh8-fJ-UrQ" secondAttribute="leading" id="06v-3C-E8r"/>
+                            <constraint firstAttribute="trailing" secondItem="2Lu-2V-DJA" secondAttribute="trailing" id="3UA-0m-Qt6"/>
+                            <constraint firstItem="2Lu-2V-DJA" firstAttribute="width" secondItem="xh8-fJ-UrQ" secondAttribute="width" id="RNn-tZ-MLb"/>
+                            <constraint firstItem="ZYx-1e-Ya3" firstAttribute="top" secondItem="xh8-fJ-UrQ" secondAttribute="top" id="VSs-xh-CCQ"/>
+                            <constraint firstItem="L8I-FR-2FD" firstAttribute="top" secondItem="ZYx-1e-Ya3" secondAttribute="bottom" id="WoK-YF-ceA"/>
+                            <constraint firstItem="2Lu-2V-DJA" firstAttribute="top" secondItem="xh8-fJ-UrQ" secondAttribute="top" id="efe-Ok-WMI"/>
+                            <constraint firstItem="ZYx-1e-Ya3" firstAttribute="width" secondItem="xh8-fJ-UrQ" secondAttribute="width" id="j9i-3j-LWU"/>
+                            <constraint firstItem="ZYx-1e-Ya3" firstAttribute="leading" secondItem="xh8-fJ-UrQ" secondAttribute="leading" id="oA7-og-Mkk"/>
+                            <constraint firstItem="L8I-FR-2FD" firstAttribute="top" secondItem="2Lu-2V-DJA" secondAttribute="bottom" id="yv5-1B-fn8"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="RNn-tZ-MLb"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="contentView" destination="ZYx-1e-Ya3" id="p1K-dd-GB8"/>
+                        <outlet property="leftMarginConstraint" destination="oA7-og-Mkk" id="rvU-5U-eMO"/>
+                        <outlet property="menuView" destination="2Lu-2V-DJA" id="UKW-kl-YID"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vl4-NI-SRV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="PdQ-44-xep">
+                    <connections>
+                        <action selector="onPanGesture:" destination="2pP-5F-D4N" id="Y8I-Eo-b8C"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="457.5" y="1460.5"/>
         </scene>
@@ -413,7 +453,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hhz-9D-hby" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1875.5" y="253.5"/>
+            <point key="canvasLocation" x="2024.5" y="429.5"/>
         </scene>
         <!--Tweet View Controller-->
         <scene sceneID="Gax-yZ-rPg">
@@ -586,7 +626,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eAQ-la-pld" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1875.5" y="1012.5"/>
+            <point key="canvasLocation" x="2024.5" y="1199.5"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="BuF-sZ-iBn">
@@ -601,7 +641,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="222" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R12-eO-uyT">
-                                <rect key="frame" x="26" y="160" width="29" height="18"/>
+                                <rect key="frame" x="26" y="160" width="28.5" height="18"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -682,6 +722,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="J90-w1-Tty"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="followersCountLabel" destination="cju-YU-bbf" id="g9F-Yb-daW"/>
@@ -692,7 +733,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0tg-X3-54y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1875.5" y="1758.5"/>
+            <point key="canvasLocation" x="1563.5" y="1975.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="sME-u2-b4x">
+            <objects>
+                <navigationController storyboardIdentifier="ProvileNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="gS0-X0-BDm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="h3q-o4-vyl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="X43-CV-LsY" kind="relationship" relationship="rootViewController" id="Az8-uh-qLC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UAG-V5-fZP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078.5" y="1975.5"/>
         </scene>
     </scenes>
     <resources>

@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
     if User.currentUser !== nil {
       let storyboard = UIStoryboard(name: "Main", bundle: nil)
-      let tweetsNavigationController = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController")
-      window?.rootViewController = tweetsNavigationController
+      let hamburderMenuViewController = storyboard.instantiateViewControllerWithIdentifier("HamburderMenuViewController")
+      window?.rootViewController = hamburderMenuViewController
     }
 
     NSNotificationCenter.defaultCenter().addObserverForName(User.userDidLogoutNotification, object: nil, queue: NSOperationQueue.mainQueue()){ (NSNotification) in
