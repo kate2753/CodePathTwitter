@@ -19,9 +19,11 @@ class TweetCell: UITableViewCell {
   @IBOutlet weak var userHandleLabel: UILabel!
   @IBOutlet weak var tweetTimestampLabel: UILabel!
   @IBOutlet weak var retweetCounLabel: UILabel!
-  @IBOutlet weak var likeCountLabel: UILabel!
+  @IBOutlet weak var favoritesCountLabel: UILabel!
 
   @IBOutlet weak var replyToTweetButton: UIImageView!
+  @IBOutlet weak var retweetButton: UIImageView!
+  @IBOutlet weak var likeButton: UIImageView!
 
   weak var delegate: TweetCellDelegate?
 
@@ -40,11 +42,18 @@ class TweetCell: UITableViewCell {
         self.userProfilePicture.layer.cornerRadius = 3
         if tweet.retweetCount > 0 {
           self.retweetCounLabel.text = "\(tweet.retweetCount)"
+        } else {
+          self.retweetCounLabel.text = ""
         }
 
         if tweet.favoritesCount > 0 {
-          self.likeCountLabel.text = "\(tweet.favoritesCount)"
+          self.favoritesCountLabel.text = "\(tweet.favoritesCount)"
+        } else {
+          self.favoritesCountLabel.text = ""
         }
+
+        likeButton.highlighted = tweet.favorited
+        retweetButton.highlighted = tweet.retweeted
       }
     }
   }
@@ -54,6 +63,9 @@ class TweetCell: UITableViewCell {
     // Initialization code
 
     replyToTweetButton.userInteractionEnabled = true
+    retweetButton.userInteractionEnabled = true
+    likeButton.userInteractionEnabled = true
+
     let replyTapGesture = UITapGestureRecognizer(target: self, action: #selector(TweetCell.replyToTweetTapped))
     replyToTweetButton.addGestureRecognizer(replyTapGesture)
   }

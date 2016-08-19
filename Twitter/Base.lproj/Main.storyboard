@@ -110,14 +110,14 @@
                                                         <constraint firstAttribute="width" constant="20" id="twe-Mn-Jl8"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet-action" translatesAutoresizingMaskIntoConstraints="NO" id="GeI-gs-OHL">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet-action" highlightedImage="retweet-action-highlighted" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GeI-gs-OHL">
                                                     <rect key="frame" x="140" y="74" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="8Q2-rz-a33"/>
                                                         <constraint firstAttribute="height" constant="20" id="y5h-AV-Ssi"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like-action" translatesAutoresizingMaskIntoConstraints="NO" id="fxP-Ea-xK7">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like-action" highlightedImage="like-action-highlighted" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fxP-Ea-xK7">
                                                     <rect key="frame" x="228" y="74" width="17" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="BwA-Pf-2bb"/>
@@ -181,7 +181,10 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favoritesCountLabel" destination="FdW-2N-pJf" id="TK0-ww-kbl"/>
+                                            <outlet property="likeButton" destination="fxP-Ea-xK7" id="qg9-5A-Gu2"/>
                                             <outlet property="replyToTweetButton" destination="Dbu-c7-dHa" id="qMe-bj-pEe"/>
+                                            <outlet property="retweetButton" destination="GeI-gs-OHL" id="zaF-FY-mbB"/>
                                             <outlet property="retweetCounLabel" destination="GRi-q2-5vt" id="jdS-hB-iup"/>
                                             <outlet property="tweetTextLabel" destination="lgX-rH-oR6" id="pL2-s5-3FU"/>
                                             <outlet property="tweetTimestampLabel" destination="nP7-oZ-FLs" id="rWO-JJ-hcF"/>
@@ -569,7 +572,9 @@
     <resources>
         <image name="compose-action" width="45" height="46"/>
         <image name="like-action" width="54" height="72"/>
+        <image name="like-action-highlighted" width="30" height="33"/>
         <image name="reply-action" width="65" height="72"/>
         <image name="retweet-action" width="75" height="72"/>
+        <image name="retweet-action-highlighted" width="75" height="72"/>
     </resources>
 </document>
