@@ -42,6 +42,20 @@ class TwitterClient: BDBOAuth1SessionManager {
     })
   }
 
+  func updateStatus(tweetText: String, success: (Tweet) -> (), failure: (NSError) -> ()) {
+    let params = NSDictionary(dictionary: ["status" : tweetText])
+
+    POST("1.1/statuses/update.json",
+         parameters: params,
+         progress: nil,
+         success: { (NSURLSessionDataTask, response: AnyObject?) in
+          let tweet = Tweet(dictionary: response as! NSDictionary)
+          success(tweet)
+    }) { (task: NSURLSessionDataTask?, error: NSError) in
+      failure(error)
+    }
+  }
+
   func login(success: () -> (), failure: (NSError) -> ()) {
     loginSuccess = success
     loginFailure = failure
@@ -88,6 +102,5 @@ class TwitterClient: BDBOAuth1SessionManager {
         self.loginFailure?(error)
       }
     )
-    
   }
 }

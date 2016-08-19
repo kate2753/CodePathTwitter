@@ -25,8 +25,10 @@ class TweetViewController: UIViewController {
 
     if let tweet = tweet {
       profilePhotoImageView.setImageWithURL(tweet.user.profileUrl!)
+      profilePhotoImageView.layer.cornerRadius = 3
+
       userName.text = tweet.user.name
-      userHandle.text = tweet.user.screenName
+      userHandle.text = "@\(tweet.user.screenName!)"
       tweetText.text = tweet.text
       tweetTime.text = tweet.formattedTime
       if tweet.retweetCount > 0 {
@@ -36,10 +38,6 @@ class TweetViewController: UIViewController {
         favoritesLabel.text = "\(tweet.favoritesCount)"
       }
     }
-
-//    navigationController.
-//    view.preservesSuperviewLayoutMargins
-//    view.navigation
   }
 
   override func didReceiveMemoryWarning() {

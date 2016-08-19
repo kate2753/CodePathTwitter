@@ -16,7 +16,7 @@ class Tweet: NSObject {
       if let timestamp = timestamp {
         let formatter = NSDateFormatter()
         formatter.dateStyle = NSDateFormatterStyle.LongStyle
-        formatter.timeStyle = .MediumStyle
+        formatter.timeStyle = .ShortStyle
         return formatter.stringFromDate(timestamp)
       }
       return nil

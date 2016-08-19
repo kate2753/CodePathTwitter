@@ -73,8 +73,11 @@ class TweetsViewController: UIViewController {
 
   func composeTweetTapped(gestureRecognizer: UITapGestureRecognizer) {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    let composeTweetVC = storyboard.instantiateViewControllerWithIdentifier("ComposeTweetNavigationController")
-    presentViewController(composeTweetVC, animated: true, completion: nil)
+    let composeTweetNavigationController = storyboard.instantiateViewControllerWithIdentifier("ComposeTweetNavigationController") as! UINavigationController
+    if let compostTweetVc = composeTweetNavigationController.topViewController as? ComposeTweetViewController {
+      compostTweetVc.delegate = self
+    }
+    presentViewController(composeTweetNavigationController, animated: true, completion: nil)
   }
 
   func tweetTapped(gestureRecognizer: UITapGestureRecognizer) {
@@ -82,7 +85,6 @@ class TweetsViewController: UIViewController {
       let storyboard = UIStoryboard(name: "Main", bundle: nil)
       let tweetViewController = storyboard.instantiateViewControllerWithIdentifier("TweetViewController") as! TweetViewController
       tweetViewController.tweet = tweetCell.tweet
-//      tweetViewController.automaticallyAdjustsScrollViewInsets = true
       navigationController?.pushViewController(tweetViewController, animated: true)
     }
   }
@@ -100,6 +102,12 @@ extension TweetsViewController: UITableViewDelegate, UITableViewDataSource {
     cell.addGestureRecognizer(tweetTap)
     cell.tweet = tweets?[indexPath.row]
     return cell
-    
+  }
+}
+
+extension TweetsViewController: ComposeTweetViewControllerDelegate {
+  func composeTweetViewController(composeTweetViewController: ComposeTweetViewController, didPostTweet tweet: Tweet) {
+    tweets?.insert(tweet, atIndex: 0)
+    tableView.reloadData()
   }
 }
