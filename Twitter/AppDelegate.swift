@@ -16,10 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    window = UIWindow(frame: UIScreen.mainScreen().bounds)
     // Override point for customization after application launch.
     if User.currentUser !== nil {
       let storyboard = UIStoryboard(name: "Main", bundle: nil)
-      let hamburderMenuViewController = storyboard.instantiateViewControllerWithIdentifier("HamburderMenuViewController")
+      let hamburderMenuViewController = storyboard.instantiateViewControllerWithIdentifier("HamburderMenuViewController") as! HamburgerMenuViewController
+
       window?.rootViewController = hamburderMenuViewController
     }
 

@@ -14,7 +14,7 @@ class ProfileViewController: UIViewController {
   @IBOutlet weak var followingCountLabel: UILabel!
   @IBOutlet weak var followersCountLabel: UILabel!
 
-  var user: User?
+  var user: User? = User.currentUser
 
   override func viewDidLoad() {
     super.viewDidLoad()

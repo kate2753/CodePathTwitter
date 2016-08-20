@@ -13,13 +13,26 @@ class HamburgerMenuViewController: UIViewController {
   @IBOutlet weak var menuView: UIView!
   @IBOutlet weak var contentView: UIView!
   @IBOutlet weak var leftMarginConstraint: NSLayoutConstraint!
-
   var originalLeftMargin: CGFloat!
+
+  var menuViewController: MenuViewController!
+  var contentViewController: UIViewController!
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    // Do any additional setup after loading the view.
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    menuViewController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
+    menuViewController.delegate = self
+    menuViewController.edgesForExtendedLayout = .None
+    menuView.addSubview(menuViewController.view)
+
+    contentViewController = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController")
+
+    contentViewController.willMoveToParentViewController(self)
+    contentViewController.edgesForExtendedLayout = .None
+    contentView.addSubview(contentViewController.view)
+    contentViewController.didMoveToParentViewController(self)
   }
 
   override func didReceiveMemoryWarning() {
@@ -65,5 +78,26 @@ class HamburgerMenuViewController: UIViewController {
    // Pass the selected object to the new view controller.
    }
    */
+
+}
+
+extension HamburgerMenuViewController: MenuViewControllerDelegate {
+  func menuViewController(menuViewController: MenuViewController, didSelectMenuItem viewController: UIViewController) {
+    viewController.willMoveToParentViewController(self)
+    self.contentView.addSubview(viewController.view)
+    viewController.didMoveToParentViewController(self)
+    UIView.animateWithDuration(
+      0.2,
+      delay: 0,
+      options: [],
+      animations: { [weak self] in
+        if let sSelf = self {
+          sSelf.leftMarginConstraint.constant = 0
+          sSelf.view.layoutIfNeeded()
+        }
+      },
+      completion: nil)
+    
+  }
   
 }
