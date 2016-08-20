@@ -36,6 +36,8 @@ class MenuViewController: UIViewController {
     menuItems.append(MenuItem(title: "Home", image: UIImage(named: "feed")!))
     menuItems.append(MenuItem(title: "Profile", image: UIImage(named: "profile")!))
 
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 60
     tableView.reloadData()
   }
 

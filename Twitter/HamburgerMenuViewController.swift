@@ -23,14 +23,14 @@ class HamburgerMenuViewController: UIViewController {
 
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     menuViewController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
+    menuViewController.view.frame = menuView.bounds
     menuViewController.delegate = self
-    menuViewController.edgesForExtendedLayout = .None
     menuView.addSubview(menuViewController.view)
 
     contentViewController = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController")
 
     contentViewController.willMoveToParentViewController(self)
-    contentViewController.edgesForExtendedLayout = .None
+    contentViewController.view.frame = contentView.bounds
     contentView.addSubview(contentViewController.view)
     contentViewController.didMoveToParentViewController(self)
   }
@@ -84,6 +84,9 @@ class HamburgerMenuViewController: UIViewController {
 extension HamburgerMenuViewController: MenuViewControllerDelegate {
   func menuViewController(menuViewController: MenuViewController, didSelectMenuItem viewController: UIViewController) {
     viewController.willMoveToParentViewController(self)
+    viewController.view.frame = contentView.bounds
+    viewController.edgesForExtendedLayout = .None
+
     self.contentView.addSubview(viewController.view)
     viewController.didMoveToParentViewController(self)
     UIView.animateWithDuration(
