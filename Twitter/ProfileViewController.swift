@@ -28,6 +28,8 @@ class ProfileViewController: UIViewController {
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
+
+//    self.view.alignmentRectInsets()
     // Dispose of any resources that can be recreated.
   }
 
